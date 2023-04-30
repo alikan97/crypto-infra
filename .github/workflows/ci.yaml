@@ -1,0 +1,30 @@
+# name: Infra Pipeline
+
+# on:
+#   push:
+#     branches: [master]
+  
+# jobs:
+#   deployment:
+#     name: Validate & Deploy
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Init
+#         id: Init
+#         run: terraform init
+      
+#       - name: Validate
+#         id: Validate
+#         run: terraform validate
+
+#       - name: Plan
+#         id: plan
+#         run: terraform plan -no-color
+        
+#       - name: Check
+#         if: steps.plan.outcome == 'failure'
+#         run: exit 1
+
+#       - name: Apply
+#         id: Apply
+#         run: terraform apply -auto-approve -input=false
