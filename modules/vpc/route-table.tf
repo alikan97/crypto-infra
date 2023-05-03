@@ -2,7 +2,7 @@ resource "aws_route_table" "public_rt" {
   vpc_id = aws_vpc.eks_vpc.id
 
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block = "0.0.0.0/0"    # 0.0.0.0/0 means every ipv4 address. It is typically used for routes to the internet
     gateway_id = aws_internet_gateway.eks_igw.id # Route traffic to the Internet Gateway
   }
 

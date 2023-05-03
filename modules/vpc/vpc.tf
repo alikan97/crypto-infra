@@ -1,5 +1,5 @@
 resource "aws_vpc" "eks_vpc" {
-  cidr_block = "192.168.0.0/16"
+  cidr_block = var.vpc_cidr_block
   instance_tenancy = "default"
 
   enable_dns_support = true
@@ -8,7 +8,6 @@ resource "aws_vpc" "eks_vpc" {
   assign_generated_ipv6_cidr_block = false
 
   tags = {
-    "Name" = "Main VPC"
+    "Name" = var.vpc_tag_name
   }
 }
-
