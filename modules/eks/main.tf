@@ -1,6 +1,6 @@
 data "aws_subnets" "public_subnets" {
   filter {
-    name = "vpc_id"
+    name   = "vpc-id"
     values = [var.vpc_id]
   }
 }
@@ -8,7 +8,7 @@ data "aws_subnets" "public_subnets" {
 resource "aws_eks_cluster" "eks_cluster" {
     name = "${var.cluster_name}-cluster"
     role_arn = aws_iam_role.cluster_role.arn
-    version = "1.21"
+    version = "1.26"
     
     vpc_config {
       endpoint_private_access = false
@@ -37,11 +37,11 @@ resource "aws_eks_node_group" "eks_node" {
   capacity_type = var.capacity_type
   disk_size = var.disk_size #Gb
   force_update_version = false
-  instance_types = ["t2.micro"]       # Too expensive
+  instance_types = ["t2.small"]       # Too expensive
 
   labels = {
     "role" = "eks-node"
   }
-  version = "1.21"
+  version = "1.26"
   depends_on = [ aws_iam_role_policy_attachment.cluster_policy, aws_iam_role_policy_attachment.ecr_read_policy, aws_iam_role_policy_attachment.eks_cni_policy ]
 }

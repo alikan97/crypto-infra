@@ -11,3 +11,8 @@ terraform {
   # TODO: Use S3 bucket to store state
   # }
 }
+
+provider "aws" {
+  alias  = "ap-southeast"
+  region = "ap-southeast-2"
+}

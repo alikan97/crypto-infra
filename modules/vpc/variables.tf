@@ -12,11 +12,11 @@ variable "subnet_public2_cidr_block" {
 }
 variable "vpc_az1" {
     description = "Availability zone for public subnet 2"
-    default = "us-east-1a"
+    default = "ap-southeast-2a"
 }
 variable "vpc_az2" {
     description = "Availability zone for public subnet 1"
-    default = "us-east-1b"
+    default = "ap-southeast-2b"
 }
 variable "vpc_tag_name" {
     description = "CIDR Block value for VPC"

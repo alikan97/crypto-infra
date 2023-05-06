@@ -16,7 +16,7 @@ resource "aws_subnet" "public_subnet2" {
     vpc_id = aws_vpc.eks_vpc.id
     
     cidr_block = var.subnet_public2_cidr_block
-    
+
     availability_zone = var.vpc_az2
 
     map_public_ip_on_launch = true
