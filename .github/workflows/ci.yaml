@@ -3,7 +3,7 @@ name: Infra Pipeline
 on:
   push:
     branches: [ main ]
-  
+
 jobs:
   deployment:
     name: Validate & Deploy
@@ -15,24 +15,22 @@ jobs:
       
       - name: Terraform setup
         uses: hashicorp/setup-terraform@v2
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{secrets.ACCESSKEYID}}
+          aws-secret-access-key: ${{secrets.SECRETACCESSKEY}}
+          aws-region: ap-southeast-2
 
       - name: Format
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: terraform fmt
         
       - name: Initialise terraform project
-        env:
-            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: terraform init
 
       - name: Terraform Plan
         id: Plan
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: terraform plan -no-color -input=false
 
       - name: Terraform Apply
