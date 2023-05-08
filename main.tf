@@ -22,11 +22,6 @@ module "s3_historical" {
   bucket_name = "historical-bucket"
 }
 
-# module "s3_backend_state" {
-#   source = "./modules/s3"
-#   bucket_name = "historical_bucket"
-# }
-
 module "eks_vpc" {
   source                    = "./modules/vpc"
   vpc_cidr_block            = "192.168.0.0/16"

@@ -4,7 +4,7 @@ resource "aws_kinesis_stream" "crypto-stream" {
     retention_period = 24   #hr
 
     shard_level_metrics = [ "IncomingRecords", "OutgoingRecords" ]
-
+    
     tags = {
       "Name" = "${var.stream_name}"
     }
