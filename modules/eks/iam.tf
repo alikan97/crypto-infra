@@ -76,7 +76,7 @@ resource "aws_iam_role_policy_attachment" "kinesis_write_policy" {
 }
 
 resource "aws_iam_policy" "read_secrets" {
-  name   = "EKS-secretsmanager-read_policy"
+  name   = "secretmanager-read_policy"
   policy = <<POLICY
 {
     "Version": "2012-10-17",
