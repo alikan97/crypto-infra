@@ -75,25 +75,25 @@ resource "aws_iam_role_policy_attachment" "ecr_read_policy" {
 #   role = aws_iam_role.nodes_role.name
 # }
 
-resource "aws_iam_policy" "read_secrets" {
-  name   = "secretmanager-read_policy"
-  policy = <<POLICY
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "secretsmanager:DescribeSecret",
-                "secretsmanager:GetSecretValue"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
-  POLICY
-}
-resource "aws_iam_role_policy_attachment" "secretsmanager_read_policy" {
-  policy_arn = aws_iam_policy.read_secrets.arn
-  role = aws_iam_role.nodes_role.name
-}
+# resource "aws_iam_policy" "read_secrets" {
+#   name   = "secretmanager-read_policy"
+#   policy = <<POLICY
+# {
+#     "Version": "2012-10-17",
+#     "Statement": [
+#         {
+#             "Effect": "Allow",
+#             "Action": [
+#                 "secretsmanager:DescribeSecret",
+#                 "secretsmanager:GetSecretValue"
+#             ],
+#             "Resource": "*"
+#         }
+#     ]
+# }
+#   POLICY
+# }
+# resource "aws_iam_role_policy_attachment" "secretsmanager_read_policy" {
+#   policy_arn = aws_iam_policy.read_secrets.arn
+#   role = aws_iam_role.nodes_role.name
+# }
