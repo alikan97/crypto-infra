@@ -53,7 +53,7 @@ resource "aws_iam_role_policy_attachment" "ecr_read_policy" {
   role = aws_iam_role.nodes_role.name
 }
 resource "aws_iam_policy" "write_to_kinesis" {
-  name   = "EKS-kinesis-write_policy"
+  name   = "eks-kinesis-write_policy"
   policy = <<POLICY
 {
     "Version": "2012-10-17",
@@ -76,7 +76,7 @@ resource "aws_iam_role_policy_attachment" "kinesis_write_policy" {
 }
 
 resource "aws_iam_policy" "read_secrets" {
-  name   = "secretmanager-read_policy"
+  name   = "eks-sm-read_policy"
   policy = <<POLICY
 {
     "Version": "2012-10-17",
