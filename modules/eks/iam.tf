@@ -74,3 +74,26 @@ resource "aws_iam_role_policy_attachment" "kinesis_write_policy" {
   policy_arn = aws_iam_policy.write_to_kinesis.arn
   role = aws_iam_role.nodes_role.name
 }
+
+resource "aws_iam_policy" "read_secrets" {
+  name   = "EKS-secretsmanager-read_policy"
+  policy = <<POLICY
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:DescribeSecret",
+                "secretsmanager:GetSecretValue"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+  POLICY
+}
+resource "aws_iam_role_policy_attachment" "kinesis_write_policy" {
+  policy_arn = aws_iam_policy.read_secrets.arn
+  role = aws_iam_role.nodes_role.name
+}
