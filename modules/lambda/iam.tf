@@ -29,7 +29,7 @@ resource "aws_iam_policy" "read_from_kinesis" {
                 "kinesis:GetShardIterator",
                 "kinesis:ListShards",
                 "kinesis:ListStreams",
-                "kinesis:SubscribeToShard",
+                "kinesis:SubscribeToShard"
             ],
             "Resource": "*"
         }
