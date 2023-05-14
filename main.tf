@@ -11,6 +11,7 @@ module "crypto_streams" {
   stream_name = "crypto_streams"
 }
 module "lambda_processor" {
+  depends_on = [ module.processor-repository ]
   source              = "./modules/lambda"
   function_name       = var.PROCESSOR_FUNCTION_NAME
   ecr_repository_name = var.ECR_INGESTION_NAME
@@ -32,6 +33,7 @@ module "eks_vpc" {
   vpc_tag_name              = "EKS-VPC"
 }
 module "eks" {
+  depends_on = [ module.eks_vpc ]
   source        = "./modules/eks"
   vpc_id        = module.eks_vpc.vpc_id
   cluster_name  = "ingestion_cluster"

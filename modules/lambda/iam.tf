@@ -30,9 +30,6 @@ resource "aws_iam_policy" "read_from_kinesis" {
                 "kinesis:ListShards",
                 "kinesis:ListStreams",
                 "kinesis:SubscribeToShard",
-                "logs:CreateLogGroup",
-                "logs:CreateLogStream",
-                "logs:PutLogEvents"
             ],
             "Resource": "*"
         }
