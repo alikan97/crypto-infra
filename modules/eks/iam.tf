@@ -93,7 +93,7 @@ resource "aws_iam_policy" "read_secrets" {
 }
   POLICY
 }
-resource "aws_iam_role_policy_attachment" "kinesis_write_policy" {
+resource "aws_iam_role_policy_attachment" "secretsmanager_read_policy" {
   policy_arn = aws_iam_policy.read_secrets.arn
   role = aws_iam_role.nodes_role.name
 }
