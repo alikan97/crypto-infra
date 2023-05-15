@@ -42,3 +42,26 @@ resource "aws_iam_role_policy_attachment" "kinesis_execution" {
   role       = aws_iam_role.lambda_func_role.name
   policy_arn = aws_iam_policy.read_from_kinesis.arn
 }
+
+resource "aws_iam_policy" "get_secrets" {
+  name   = "lambda-sm-read_policy"
+  policy = <<POLICY
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:DescribeSecret",
+                "secretsmanager:GetSecretValue"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+  POLICY
+}
+resource "aws_iam_role_policy_attachment" "sm_read" {
+  policy_arn = aws_iam_policy.get_secrets.arn
+  role = aws_iam_role.lambda_func_role.name
+}
