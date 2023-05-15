@@ -4,10 +4,14 @@ data "aws_ecr_repository" "ecr_repository" {
 
 resource "aws_lambda_function" "lambda_func" {
   function_name = var.function_name
-  timeout       = 60 # seconds
+  timeout       = 240 # seconds
   image_uri     = "${data.aws_ecr_repository.ecr_repository.repository_url}:latest"
   package_type  = "Image"
   role          = aws_iam_role.lambda_func_role.arn
+  vpc_config {
+    subnet_ids = [ var.subnet_ids ]
+    security_group_ids = [ var.security_group_ids ]
+  }
 }
 
 resource "aws_lambda_function_event_invoke_config" "kinesis_invoker" {
